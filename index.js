@@ -95,16 +95,13 @@ bot.on('callback_query', async (query) => {
     console.log('Plan selected:', planKey, plan);
 
     if (plan) {
-      const adminId = process.env.ADMIN_USER_ID;
-      console.log('Sending to admin:', adminId);
+      const keyboard = {
+        inline_keyboard: [
+          [{ text: '💬 Связаться с продавцом', url: 'https://t.me/keml00' }]
+        ]
+      };
 
-      const adminMessage = `🔔 Новая заявка на оплату!\n\n👤 Пользователь: ${firstName} (@${username})\n🆔 ID: ${userId}\n📦 Тариф: ${plan.name}\n📊 Трафик: ${plan.traffic}\n💰 Сумма: ${plan.price} руб.\n\nДля активации используйте:\n/activate ${userId} ${planKey}`;
-
-      bot.sendMessage(adminId, adminMessage)
-        .then(() => console.log('Message sent to admin'))
-        .catch(err => console.error('Error sending to admin:', err));
-
-      bot.sendMessage(chatId, `✅ Заявка отправлена!\n\nТариф: ${plan.name}\nТрафик: ${plan.traffic}\nСумма: ${plan.price} руб.\n\n📱 Для оплаты свяжитесь с администратором.\nПосле оплаты ваша подписка будет активирована автоматически.`)
+      bot.sendMessage(chatId, `✅ Вы выбрали тариф!\n\n📦 Тариф: ${plan.name}\n📊 Трафик: ${plan.traffic}\n💰 Сумма: ${plan.price} руб.\n\nНажмите кнопку ниже для связи с продавцом:`, { reply_markup: keyboard })
         .catch(err => console.error('Error sending to user:', err));
     }
   }
