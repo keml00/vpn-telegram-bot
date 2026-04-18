@@ -1,0 +1,19 @@
+{
+  "name": "vpn-telegram-bot",
+  "version": "1.0.0",
+  "description": "Telegram bot for VPN subscription sales",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "crypto-bot-api": "^0.3.6",
+    "dotenv": "^16.4.5",
+    "node-telegram-bot-api": "^0.66.0",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
